@@ -36,12 +36,12 @@ export type BrandConfig = {
 };
 
 export const BRAND: BrandConfig = {
-  brandName: "Block Drains Swindon",
-  domain: "exampledrainheroes.co.uk",
+  brandName: "Blocked Drains Swindon",
+  domain: "swindonblockeddrains.co.uk",
   primaryLocation: "Swindon",
   serviceAreaLabel: "Swindon and surrounding areas",
-  phone: "01793 487489",
-  email: "info@exampledrainheroes.co.uk",
+  phone: "01793487489",
+  email: "info@swindonblockeddrains.co.uk",
   addressLine1: "Unit Z25, The Pembroke Center",
   addressLine2: "Cheney Manor Industrial Estate, Swindon",
   postcode: "SN2 2PQ",
