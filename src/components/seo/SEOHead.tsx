@@ -4,9 +4,10 @@ import { SEOMetadata } from "@/config/seo";
 
 interface SEOHeadProps {
   metadata: SEOMetadata;
+  ogImage?: string;
 }
 
-export function SEOHead({ metadata }: SEOHeadProps) {
+export function SEOHead({ metadata, ogImage }: SEOHeadProps) {
   useEffect(() => {
     document.title = metadata.title;
 
@@ -42,6 +43,45 @@ export function SEOHead({ metadata }: SEOHeadProps) {
       );
     }
 
+    // Open Graph meta tags
+    const ogTags = {
+      "og:title": metadata.title,
+      "og:description": metadata.description,
+      "og:url": metadata.canonicalUrl ? `https://${BRAND.domain}${metadata.canonicalUrl}` : `https://${BRAND.domain}`,
+      "og:image": ogImage || `https://${BRAND.domain}/og/swindonblockeddrains-og.jpg`,
+      "og:type": "website",
+      "og:locale": "en_GB",
+      "og:site_name": BRAND.brandName,
+    };
+
+    Object.entries(ogTags).forEach(([property, content]) => {
+      let metaTag = document.querySelector(`meta[property="${property}"]`);
+      if (!metaTag) {
+        metaTag = document.createElement("meta");
+        metaTag.setAttribute("property", property);
+        document.head.appendChild(metaTag);
+      }
+      metaTag.setAttribute("content", content);
+    });
+
+    // Twitter Card meta tags
+    const twitterTags = {
+      "twitter:card": "summary_large_image",
+      "twitter:title": metadata.title,
+      "twitter:description": metadata.description,
+      "twitter:image": ogImage || `https://${BRAND.domain}/og/swindonblockeddrains-og.jpg`,
+    };
+
+    Object.entries(twitterTags).forEach(([name, content]) => {
+      let metaTag = document.querySelector(`meta[name="${name}"]`);
+      if (!metaTag) {
+        metaTag = document.createElement("meta");
+        metaTag.setAttribute("name", name);
+        document.head.appendChild(metaTag);
+      }
+      metaTag.setAttribute("content", content);
+    });
+
     // Handle noindex meta tag for content not ready for indexing
     let robotsMeta = document.querySelector('meta[name="robots"]');
     if (metadata.noIndex) {
@@ -65,7 +105,7 @@ export function SEOHead({ metadata }: SEOHeadProps) {
         existingRobotsMeta.remove();
       }
     };
-  }, [metadata]);
+  }, [metadata, ogImage]);
 
   return null;
 }
