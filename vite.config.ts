@@ -10,6 +10,24 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
+  build: {
+    // Optimize chunk splitting for better caching and smaller initial load
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Split vendor chunks
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-ui': ['@radix-ui/react-select', '@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-popover'],
+          'vendor-form': ['react-hook-form', '@hookform/resolvers', 'zod'],
+          'vendor-query': ['@tanstack/react-query'],
+        },
+      },
+    },
+    // Target modern browsers for smaller bundle
+    target: 'es2020',
+    // Minimize CSS
+    cssMinify: true,
+  },
   plugins: [
     react(),
     mode === "development" && componentTagger(),

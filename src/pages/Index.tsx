@@ -67,12 +67,19 @@ const Index = () => {
         </div>
       </section>
 
-      <ServicesGrid />
-      <TestimonialsSection />
-      <LocationsGrid />
+      {/* Below-fold content with content-visibility optimization */}
+      <div className="content-visibility-auto">
+        <ServicesGrid />
+      </div>
+      <div className="content-visibility-auto">
+        <TestimonialsSection />
+      </div>
+      <div className="content-visibility-auto">
+        <LocationsGrid />
+      </div>
 
       {/* Priority Service-in-Location Links (SEO) */}
-      <section className="section-padding">
+      <section className="section-padding content-visibility-auto">
         <div className="container-wide px-4">
           <div className="text-center mb-8">
             <h2 className="text-2xl md:text-3xl font-bold mb-2">
@@ -107,9 +114,15 @@ const Index = () => {
         </div>
       </section>
 
-      <GuaranteesSection />
-      <FAQSection />
-      <CTASection />
+      <div className="content-visibility-auto">
+        <GuaranteesSection />
+      </div>
+      <div className="content-visibility-auto">
+        <FAQSection />
+      </div>
+      <div className="content-visibility-auto">
+        <CTASection />
+      </div>
     </Layout>
   );
 };

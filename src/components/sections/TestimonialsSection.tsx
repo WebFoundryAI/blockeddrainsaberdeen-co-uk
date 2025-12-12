@@ -36,8 +36,7 @@ export function TestimonialsSection() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-card p-6 rounded-xl card-elevated animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="bg-card p-6 rounded-xl card-elevated"
             >
               <div className="flex gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (

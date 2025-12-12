@@ -169,6 +169,12 @@
   .text-balance {
     text-wrap: balance;
   }
+  
+  /* Content visibility for below-fold sections - improves mobile rendering */
+  .content-visibility-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
+  }
 }
 
 /* GPU-accelerated animations to prevent forced reflow */
@@ -178,6 +184,7 @@
   will-change: transform, opacity;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 /* Clean up will-change after animation completes */
@@ -185,4 +192,21 @@
 .animate-scale-in.animation-complete,
 .animate-slide-in-left.animation-complete {
   will-change: auto;
+}
+
+/* Optimize paint for fixed/sticky elements */
+.sticky {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Reduce paint complexity on mobile */
+@media (max-width: 768px) {
+  .card-elevated {
+    box-shadow: 0 2px 8px -2px hsla(213, 80%, 35%, 0.1);
+  }
+  
+  .card-elevated:hover {
+    box-shadow: 0 2px 8px -2px hsla(213, 80%, 35%, 0.1);
+  }
 }

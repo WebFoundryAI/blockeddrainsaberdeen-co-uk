@@ -8,8 +8,8 @@ export function HeroWithForm() {
       <div className="hero-overlay py-16 md:py-24">
         <div className="container-wide px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Hero content */}
-            <div className="text-primary-foreground animate-fade-in">
+            {/* Hero content - removed animation for faster paint */}
+            <div className="text-primary-foreground">
               <div className="inline-flex items-center gap-2 bg-accent/20 border border-accent/30 rounded-full px-4 py-1.5 mb-6">
                 <Clock className="h-4 w-4 text-accent" />
                 <span className="text-sm font-medium">24/7 Emergency Service</span>
@@ -50,8 +50,8 @@ export function HeroWithForm() {
               </p>
             </div>
 
-            {/* Lead form */}
-            <div className="bg-card rounded-xl p-6 md:p-8 shadow-2xl animate-scale-in" style={{ animationDelay: "0.2s" }}>
+            {/* Lead form - removed animation for faster paint */}
+            <div className="bg-card rounded-xl p-6 md:p-8 shadow-2xl">
               <h2 className="text-2xl font-bold text-card-foreground mb-2">
                 Get Your Free Quote
               </h2>
