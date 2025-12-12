@@ -35,7 +35,7 @@ const Contact = () => {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact info */}
             <div>
-              <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
+              <h2 className="text-2xl font-bold mb-6">Contact Our Drainage Team</h2>
               <p className="text-muted-foreground mb-8">
                 Whether you need an emergency callout or want to book a routine service, we're here to help. Contact us today for a free, no-obligation quote.
               </p>
@@ -110,7 +110,7 @@ const Contact = () => {
 
             {/* Contact form */}
             <div className="bg-card p-6 md:p-8 rounded-xl card-elevated">
-              <h2 className="text-2xl font-bold mb-2">Request a Quote</h2>
+              <h2 className="text-2xl font-bold mb-2">Request a Free Drainage Quote</h2>
               <p className="text-muted-foreground mb-6">
                 Fill in your details and we'll get back to you as soon as possible.
               </p>

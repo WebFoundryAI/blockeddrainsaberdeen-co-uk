@@ -32,7 +32,7 @@ const About = () => {
       <section className="section-padding">
         <div className="container-narrow px-4">
           <div className="prose prose-lg max-w-none">
-            <h2 className="text-2xl font-bold mb-4">Who We Are</h2>
+            <h2 className="text-2xl font-bold mb-4">Trusted Drainage Specialists in {BRAND.serviceAreaLabel}</h2>
             <p className="text-muted-foreground mb-6">
               {BRAND.brandName} is a professional drainage company serving {BRAND.serviceAreaLabel}. With years of experience in the industry, we've built a reputation for fast, reliable service at fair prices.
             </p>
@@ -66,7 +66,7 @@ const About = () => {
           </div>
 
           <div className="mt-12">
-            <h2 className="text-2xl font-bold mb-6">Our Promise</h2>
+            <h2 className="text-2xl font-bold mb-6">Our Customer Service Guarantee</h2>
             <ul className="space-y-4">
               {[
                 "No call-out fee – you only pay for work completed",
