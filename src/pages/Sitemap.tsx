@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Layout } from "@/components/layout/Layout";
-import { SEOHead } from "@/components/seo/SEOHead";
+import { RouteSEOHead } from "@/components/seo/RouteSEOHead";
 import { SchemaScript } from "@/components/seo/SchemaScript";
 import { BRAND } from "@/config/brand";
 import { SERVICES } from "@/config/services";
@@ -99,13 +99,7 @@ const Sitemap = () => {
 
   return (
     <Layout>
-      <SEOHead
-        metadata={{
-          title: `Sitemap | ${BRAND.brandName}`,
-          description: `Complete sitemap for ${BRAND.brandName}. Browse all our drainage services, locations, and blog posts.`,
-          canonicalUrl: "/sitemap",
-        }}
-      />
+      <RouteSEOHead />
       <SchemaScript
         schema={[
           generateWebPageSchema(

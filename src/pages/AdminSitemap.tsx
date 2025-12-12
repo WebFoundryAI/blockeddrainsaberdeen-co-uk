@@ -107,14 +107,21 @@ const AdminSitemap = () => {
     return new Date(dateStr).toLocaleString();
   };
 
+  // Normalize URL to include trailing slash
+  const normalizeUrl = (url: string): string => {
+    if (url === "/" || url === "") return "/";
+    return url.replace(/\/+$/, "") + "/";
+  };
+
   const generateUrlEntry = (
     loc: string,
     priority: string,
     changefreq: string,
     lastmod?: string
   ): string => {
+    const normalizedLoc = normalizeUrl(loc);
     return `  <url>
-    <loc>https://${BRAND.domain}${loc}</loc>
+    <loc>https://${BRAND.domain}${normalizedLoc}</loc>
     ${lastmod ? `<lastmod>${lastmod}</lastmod>` : ""}
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
