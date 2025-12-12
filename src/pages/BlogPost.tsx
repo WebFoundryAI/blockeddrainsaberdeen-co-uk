@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { CTASection } from "@/components/sections/CTASection";
-import { SEOHead } from "@/components/seo/SEOHead";
+import { RouteSEOHead } from "@/components/seo/RouteSEOHead";
 import { SchemaScript } from "@/components/seo/SchemaScript";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Breadcrumbs } from "@/components/nav/Breadcrumbs";
@@ -10,6 +10,7 @@ import { generateBlogPostSchema, generateBreadcrumbSchema } from "@/lib/schema";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft } from "lucide-react";
+import { getCanonicalUrl } from "@/lib/seoUtils";
 
 interface BlogPostData {
   id: string;
@@ -99,11 +100,11 @@ const BlogPost = () => {
 
   return (
     <Layout>
-      <SEOHead
-        metadata={{
+      <RouteSEOHead 
+        override={{
           title: `${post.title} | ${BRAND.brandName} Blog`,
           description: post.excerpt,
-          canonicalUrl: `/blog/${post.slug}`,
+          canonicalUrl: getCanonicalUrl(`/blog/${post.slug}`),
           noIndex: !shouldIndex,
         }}
       />
