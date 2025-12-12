@@ -11,12 +11,20 @@ import { LOCATIONS, PRIMARY_LOCATION } from "@/config/locations";
 import { BRAND } from "@/config/brand";
 import { getServiceSEO } from "@/config/seo";
 import { getServiceOgImage } from "@/config/ogImages";
+import { getServiceFAQs } from "@/config/faqs";
 import {
   generateServiceSchema,
   generateLocalBusinessSchema,
   generateBreadcrumbSchema,
+  generateFAQSchema,
 } from "@/lib/schema";
-import { CheckCircle2, ArrowLeft, MapPin } from "lucide-react";
+import { CheckCircle2, ArrowLeft, MapPin, ChevronDown } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const ServiceDetail = () => {
   const { serviceSlug } = useParams<{ serviceSlug: string }>();
@@ -60,6 +68,7 @@ const ServiceDetail = () => {
             { name: "Services", url: "/services" },
             { name: service.name, url: `/services/${service.slug}` },
           ]),
+          generateFAQSchema(getServiceFAQs(service.slug)),
         ]}
       />
 
@@ -138,6 +147,23 @@ const ServiceDetail = () => {
                   </Link>
                 ))}
               </div>
+
+              {/* FAQs */}
+              <h3 className="text-xl font-bold mt-10 mb-4">
+                Frequently Asked Questions About {service.name}
+              </h3>
+              <Accordion type="single" collapsible className="mb-8">
+                {getServiceFAQs(service.slug).map((faq, index) => (
+                  <AccordionItem key={index} value={`faq-${index}`}>
+                    <AccordionTrigger className="text-left">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
 
               <h3 className="text-xl font-bold mb-4">Other Services</h3>
               <div className="grid sm:grid-cols-3 gap-4">

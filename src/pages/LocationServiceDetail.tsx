@@ -12,11 +12,19 @@ import { getServiceBySlug, SERVICES } from "@/config/services";
 import { BRAND } from "@/config/brand";
 import { getServiceInLocationSEO } from "@/config/seo";
 import { getServiceOgImage } from "@/config/ogImages";
+import { getServiceInLocationFAQs } from "@/config/faqs";
 import {
   generateServiceInLocationSchema,
   generateBreadcrumbSchema,
+  generateFAQSchema,
 } from "@/lib/schema";
 import { ArrowLeft, CheckCircle2, MapPin } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const LocationServiceDetail = () => {
   const { locationSlug, serviceSlug } = useParams<{
@@ -62,6 +70,7 @@ const LocationServiceDetail = () => {
               url: `/location/${location.slug}/${service.slug}`,
             },
           ]),
+          generateFAQSchema(getServiceInLocationFAQs(service.slug, location.name)),
         ]}
       />
 
@@ -165,6 +174,23 @@ const LocationServiceDetail = () => {
                   </Link>
                 ))}
               </div>
+
+              {/* FAQs */}
+              <h3 className="text-xl font-bold mt-6 mb-4">
+                Common Questions About {service.name} in {location.name}
+              </h3>
+              <Accordion type="single" collapsible className="mb-8">
+                {getServiceInLocationFAQs(service.slug, location.name).map((faq, index) => (
+                  <AccordionItem key={index} value={`faq-${index}`}>
+                    <AccordionTrigger className="text-left">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
 
               {/* Internal links */}
               <div className="pt-6 border-t border-border">

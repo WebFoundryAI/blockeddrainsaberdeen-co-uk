@@ -12,12 +12,20 @@ import { SERVICES } from "@/config/services";
 import { BRAND } from "@/config/brand";
 import { getLocationSEO } from "@/config/seo";
 import { LOCATIONS_OG_IMAGE } from "@/config/ogImages";
+import { getLocationFAQs } from "@/config/faqs";
 import {
   generateLocalBusinessSchema,
   generatePlaceSchema,
   generateBreadcrumbSchema,
+  generateFAQSchema,
 } from "@/lib/schema";
 import { ArrowLeft, MapPin, Wrench } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const LocationDetail = () => {
   const { locationSlug } = useParams<{ locationSlug: string }>();
@@ -54,6 +62,7 @@ const LocationDetail = () => {
             { name: "Areas", url: "/locations" },
             { name: location.name, url: `/location/${location.slug}` },
           ]),
+          generateFAQSchema(getLocationFAQs(location.name)),
         ]}
       />
 
@@ -131,6 +140,23 @@ const LocationDetail = () => {
                   </Link>
                 ))}
               </div>
+
+              {/* FAQs */}
+              <h3 className="text-xl font-bold mt-10 mb-4">
+                Frequently Asked Questions About {location.name} Drainage
+              </h3>
+              <Accordion type="single" collapsible className="mb-8">
+                {getLocationFAQs(location.name).map((faq, index) => (
+                  <AccordionItem key={index} value={`faq-${index}`}>
+                    <AccordionTrigger className="text-left">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
 
               {/* Other locations */}
               <h3 className="text-xl font-bold mt-8 mb-4">Other Areas We Cover</h3>
