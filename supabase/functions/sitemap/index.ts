@@ -174,6 +174,20 @@ Deno.serve(async (req) => {
 
     console.log(`Generated sitemap with ${urls.length} URLs`);
 
+    // Update sitemap_status to record regeneration
+    const { error: statusError } = await supabase
+      .from("sitemap_status")
+      .upsert({
+        id: "00000000-0000-0000-0000-000000000001",
+        last_generated_at: new Date().toISOString(),
+        url_count: urls.length,
+        generated_by: "edge_function",
+      });
+
+    if (statusError) {
+      console.error("Error updating sitemap status:", statusError);
+    }
+
     // Generate XML
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
