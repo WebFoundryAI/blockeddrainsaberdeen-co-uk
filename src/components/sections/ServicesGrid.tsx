@@ -41,7 +41,7 @@ export function ServicesGrid({ showAll = false, location }: ServicesGridProps) {
               </p>
               <Link
                 to={location ? `/locations/${location}/${service.slug}` : `/services/${service.slug}`}
-                className="inline-flex items-center text-primary text-sm font-medium hover:gap-2 transition-all"
+                className="inline-flex items-center text-primary text-sm font-medium hover:gap-2 transition-all min-h-[48px] md:min-h-0 py-2 md:py-0"
                 aria-label={`View ${service.name} services`}
               >
                 View {service.name.toLowerCase()}
@@ -55,7 +55,7 @@ export function ServicesGrid({ showAll = false, location }: ServicesGridProps) {
           <div className="text-center mt-10">
             <Link
               to="/services"
-              className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+              className="inline-flex items-center gap-2 text-primary font-medium hover:underline min-h-[48px] md:min-h-0 py-2 md:py-0 px-4 md:px-0"
             >
               View all services
               <ArrowRight className="h-4 w-4" />

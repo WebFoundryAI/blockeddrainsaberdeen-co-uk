@@ -54,7 +54,7 @@ export function Footer() {
         {/* Services column - FIXED: /70 → /85 */}
           <div>
             <h4 className="font-semibold mb-4">Our Services</h4>
-            <ul className="space-y-0 md:space-y-2 text-sm">
+            <ul className="space-y-2 md:space-y-2 text-sm">
               <li>
                 <Link
                   to="/"
@@ -95,7 +95,7 @@ export function Footer() {
           {/* Areas column - FIXED: /70 → /85 */}
           <div>
             <h4 className="font-semibold mb-4">Areas We Cover</h4>
-            <ul className="space-y-0 md:space-y-2 text-sm">
+            <ul className="space-y-2 md:space-y-2 text-sm">
               {LOCATIONS.slice(0, 6).map((location) => (
                 <li key={location.slug}>
                   <Link
@@ -112,7 +112,7 @@ export function Footer() {
           {/* Quick links column - FIXED: /70 → /85 */}
           <div>
             <h4 className="font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-0 md:space-y-2 text-sm">
+            <ul className="space-y-2 md:space-y-2 text-sm">
               <li>
                 <Link
                   to="/about"
@@ -175,7 +175,7 @@ export function Footer() {
 
             {/* Legal links - FIXED: /70 → /85 */}
             <h4 className="font-semibold mb-3 mt-6">Legal</h4>
-            <ul className="space-y-0 md:space-y-2 text-sm">
+            <ul className="space-y-2 md:space-y-2 text-sm">
               <li>
                 <Link
                   to="/privacy"

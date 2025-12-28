@@ -174,10 +174,10 @@ export function LeadForm({
               <code className="font-mono font-bold">{referenceId}</code>
               <button
                 onClick={copyReference}
-                className="p-1 hover:bg-background rounded"
+                className="p-3 -m-2 hover:bg-background rounded min-h-[48px] min-w-[48px] md:min-h-0 md:min-w-0 md:p-1 md:m-0 flex items-center justify-center"
                 aria-label="Copy reference"
               >
-                <Copy className="h-4 w-4" />
+                <Copy className="h-5 w-5 md:h-4 md:w-4" />
               </button>
             </div>
           </div>
@@ -188,7 +188,7 @@ export function LeadForm({
         </p>
         <a
           href={`tel:${BRAND.phone}`}
-          className="text-lg font-bold text-primary hover:underline"
+          className="text-lg font-bold text-primary hover:underline min-h-[48px] inline-flex items-center px-4"
         >
           {BRAND.phone}
         </a>

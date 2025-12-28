@@ -25,7 +25,7 @@ export function LocationsGrid({ showAll = false }: LocationsGridProps) {
             <Link
               key={location.slug}
               to={`/locations/${location.slug}`}
-              className="group flex items-center gap-3 p-4 bg-card rounded-lg card-elevated hover:border-primary/20 border border-transparent transition-all animate-fade-in"
+              className="group flex items-center gap-3 p-4 min-h-[56px] md:min-h-0 bg-card rounded-lg card-elevated hover:border-primary/20 border border-transparent transition-all animate-fade-in"
               style={{ animationDelay: `${index * 0.05}s` }}
             >
               <MapPin className="h-5 w-5 text-primary shrink-0" />
@@ -48,7 +48,7 @@ export function LocationsGrid({ showAll = false }: LocationsGridProps) {
           <div className="text-center mt-10">
             <Link
               to="/locations"
-              className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+              className="inline-flex items-center gap-2 text-primary font-medium hover:underline min-h-[48px] md:min-h-0 py-2 md:py-0 px-4 md:px-0"
             >
               View all areas
               <ArrowRight className="h-4 w-4" />
