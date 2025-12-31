@@ -16,6 +16,8 @@ import {
   generateLocalBusinessSchema,
   generateBreadcrumbSchema,
   generateFAQSchema,
+  generateProfessionalServiceSchema,
+  generateHowToSchema,
 } from "@/lib/schema";
 import { CheckCircle2, ArrowLeft, MapPin, ChevronDown } from "lucide-react";
 import {
@@ -55,12 +57,22 @@ const ServiceDetail = () => {
     primaryLocationName: BRAND.primaryLocation,
   };
 
+  // HowTo steps for rich snippets
+  const howToSteps = [
+    { name: "Contact Us", text: `Call ${BRAND.phone} or fill out our online form to report your drainage issue. We're available 24/7 for emergencies.` },
+    { name: "Free Assessment", text: "Our engineer arrives promptly (usually within 1-2 hours for emergencies) and assesses the problem at no charge." },
+    { name: "Clear Quote", text: "We provide a fixed, upfront quote before any work begins. No hidden fees or surprises." },
+    { name: "Professional Service", text: `Our trained engineers complete the ${service.name.toLowerCase()} using professional equipment and techniques.` },
+    { name: "Quality Check", text: "We verify the work is complete and demonstrate the results. All work is guaranteed." },
+  ];
+
   return (
     <Layout>
       <RouteSEOHead ogImage={getServiceOgImage(service.slug)} />
       <SchemaScript
         schema={[
           generateServiceSchema(service),
+          generateProfessionalServiceSchema(service),
           generateLocalBusinessSchema(),
           generateBreadcrumbSchema([
             { name: "Home", url: "/" },
@@ -68,6 +80,7 @@ const ServiceDetail = () => {
             { name: service.name, url: `/services/${service.slug}` },
           ]),
           generateFAQSchema(getServiceFAQs(service.slug)),
+          generateHowToSchema(service.name, howToSteps),
         ]}
       />
 

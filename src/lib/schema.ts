@@ -116,9 +116,10 @@ export function generateLocalBusinessSchema(
 
   return {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": ["LocalBusiness", "Plumber", "HomeAndConstructionBusiness"],
     "@id": `https://${BRAND.domain}/#localbusiness`,
     name: BRAND.brandName,
+    alternateName: "Manchester Blocked Drain",
     description: `Professional drainage services in ${loc.name} and ${BRAND.serviceAreaLabel}. 24/7 emergency drain unblocking, CCTV surveys, and repairs.`,
     url: `https://${BRAND.domain}`,
     telephone: `+44${BRAND.phone.replace(/^0/, '')}`,
@@ -148,35 +149,30 @@ export function generateLocalBusinessSchema(
       latitude: loc.latitude,
       longitude: loc.longitude,
     },
-    areaServed: [
+    areaServed: {
+      "@type": "GeoCircle",
+      geoMidpoint: {
+        "@type": "GeoCoordinates",
+        latitude: 53.4808,
+        longitude: -2.2426,
+      },
+      geoRadius: "30000",
+    },
+    serviceArea: [
       {
         "@type": "City",
         name: "Manchester",
+        containedIn: { "@type": "AdministrativeArea", name: "Greater Manchester" },
       },
-      {
-        "@type": "City",
-        name: "Salford",
-      },
-      {
-        "@type": "City",
-        name: "Stockport",
-      },
-      {
-        "@type": "City",
-        name: "Bolton",
-      },
-      {
-        "@type": "City",
-        name: "Oldham",
-      },
-      {
-        "@type": "City",
-        name: "Didsbury",
-      },
-      {
-        "@type": "City",
-        name: "Chorlton",
-      },
+      { "@type": "City", name: "Salford" },
+      { "@type": "City", name: "Stockport" },
+      { "@type": "City", name: "Bolton" },
+      { "@type": "City", name: "Oldham" },
+      { "@type": "City", name: "Didsbury" },
+      { "@type": "City", name: "Chorlton" },
+      { "@type": "City", name: "Altrincham" },
+      { "@type": "City", name: "Rochdale" },
+      { "@type": "City", name: "Bury" },
     ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
@@ -204,6 +200,15 @@ export function generateLocalBusinessSchema(
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
+            name: "Drain Jetting",
+            description: "High-pressure water jetting to clear stubborn blockages",
+            url: `https://${BRAND.domain}/services/drain-jetting`,
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
             name: "Emergency Drain Services",
             description: "24/7 emergency drainage call-outs available",
             url: `https://${BRAND.domain}/services/emergency-drain-services`,
@@ -220,7 +225,112 @@ export function generateLocalBusinessSchema(
           closes: "23:59",
         },
     priceRange: "££",
+    paymentAccepted: ["Cash", "Credit Card", "Debit Card", "Bank Transfer"],
+    currenciesAccepted: "GBP",
+    knowsAbout: [
+      "Drain unblocking",
+      "CCTV drain surveys",
+      "High-pressure drain jetting",
+      "Emergency drainage services",
+      "Blocked toilet repair",
+      "Drain repairs and relining",
+    ],
+    slogan: BRAND.tagline,
     ...(sameAs.length > 0 && { sameAs }),
+  };
+}
+
+// Generate HowTo schema for service pages - great for rich snippets
+export function generateHowToSchema(
+  serviceName: string,
+  steps: Array<{ name: string; text: string }>
+): SchemaOrgObject {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: `How ${BRAND.brandName} Handles ${serviceName}`,
+    description: `Step-by-step process for professional ${serviceName.toLowerCase()} services in ${BRAND.serviceAreaLabel}`,
+    totalTime: "PT2H",
+    estimatedCost: {
+      "@type": "MonetaryAmount",
+      currency: "GBP",
+      value: "0",
+      name: "Free call-out and quote",
+    },
+    step: steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+    })),
+  };
+}
+
+// AboutPage schema for the About page
+export function generateAboutPageSchema(): SchemaOrgObject {
+  return {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: `About ${BRAND.brandName}`,
+    description: `Learn about ${BRAND.brandName}, your trusted drainage specialists serving ${BRAND.serviceAreaLabel}. Professional, reliable, and available 24/7.`,
+    url: `https://${BRAND.domain}/about`,
+    mainEntity: {
+      "@type": "LocalBusiness",
+      "@id": `https://${BRAND.domain}/#localbusiness`,
+      name: BRAND.brandName,
+    },
+  };
+}
+
+// Professional Service schema (more specific than generic Service)
+export function generateProfessionalServiceSchema(
+  service: ServiceConfig,
+  location?: LocationConfig
+): SchemaOrgObject {
+  const loc = location || PRIMARY_LOCATION;
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": `https://${BRAND.domain}/services/${service.slug}#service`,
+    name: service.name,
+    description: service.description,
+    url: `https://${BRAND.domain}/services/${service.slug}`,
+    provider: {
+      "@type": "LocalBusiness",
+      "@id": `https://${BRAND.domain}/#localbusiness`,
+      name: BRAND.brandName,
+      telephone: BRAND.phone,
+    },
+    areaServed: {
+      "@type": "Place",
+      name: loc.name,
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: loc.latitude,
+        longitude: loc.longitude,
+      },
+    },
+    serviceType: service.name,
+    termsOfService: `https://${BRAND.domain}/terms`,
+    availableChannel: {
+      "@type": "ServiceChannel",
+      serviceUrl: `https://${BRAND.domain}/contact`,
+      servicePhone: BRAND.phone,
+      serviceSmsNumber: BRAND.phone,
+    },
+    offers: {
+      "@type": "Offer",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        priceCurrency: "GBP",
+        eligibleTransactionVolume: {
+          "@type": "QuantitativeValue",
+          value: "1",
+        },
+      },
+      availability: "https://schema.org/InStock",
+    },
   };
 }
 

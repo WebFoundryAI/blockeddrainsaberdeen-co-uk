@@ -4,7 +4,7 @@ import { RouteSEOHead } from "@/components/seo/RouteSEOHead";
 import { SchemaScript } from "@/components/seo/SchemaScript";
 import { BRAND } from "@/config/brand";
 import { ABOUT_CONTENT } from "@/config/staticContent";
-import { generateOrganizationSchema, generateBreadcrumbSchema } from "@/lib/schema";
+import { generateOrganizationSchema, generateBreadcrumbSchema, generateAboutPageSchema, generateLocalBusinessSchema } from "@/lib/schema";
 import { Users, Clock, Shield } from "lucide-react";
 
 const About = () => {
@@ -12,7 +12,9 @@ const About = () => {
     <Layout>
       <RouteSEOHead />
       <SchemaScript schema={[
+        generateAboutPageSchema(),
         generateOrganizationSchema(),
+        generateLocalBusinessSchema(),
         generateBreadcrumbSchema([
           { name: "Home", url: "/" },
           { name: "About", url: "/about" },
