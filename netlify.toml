@@ -45,9 +45,15 @@
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"
 
-# Redirects (www to non-www)
+# Redirects (www to non-www) - handles both http and https
 [[redirects]]
   from = "https://www.manchesterblockeddrain.co.uk/*"
+  to = "https://manchesterblockeddrain.co.uk/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.manchesterblockeddrain.co.uk/*"
   to = "https://manchesterblockeddrain.co.uk/:splat"
   status = 301
   force = true
