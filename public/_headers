@@ -31,13 +31,48 @@
 # ============================================
 
 # HTML documents - no caching (always revalidate)
+# Root and all page directories must be fresh on every request
 /
   Cache-Control: no-cache, no-store, must-revalidate
-  
+
 /*.html
   Cache-Control: no-cache, no-store, must-revalidate
 
 /index.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# All page routes - prevent caching on directory-style URLs
+/about/*
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/contact/*
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/services/*
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/locations/*
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/blog/*
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/faq/*
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/privacy/*
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/terms/*
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/cookies/*
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/sitemap/*
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/404/*
   Cache-Control: no-cache, no-store, must-revalidate
 
 # Static assets with content hashes (immutable - 1 year)
