@@ -19,7 +19,8 @@ const defaultDescription = `Professional drain unblocking, CCTV surveys, and eme
 
 const { title = defaultTitle, description = defaultDescription, canonical, image, schema } = Astro.props;
 const siteUrl = `https://${BRAND.domain}`;
-const canonicalUrl = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
+// Always use non-www canonical URL - extract pathname from Astro.url if no canonical provided
+const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.url.pathname}`;
 const defaultOgImage = `${siteUrl}/images/og-default.jpg`;
 const ogImage = image ? `${siteUrl}${image}` : defaultOgImage;
 
