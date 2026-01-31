@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { BRAND } from '../data/brand';
 import { SERVICES } from '../data/services';
 import { LOCATIONS } from '../data/locations';
+import { BLOG_POSTS } from '../data/blog';
 import { getBreadcrumbSchema } from '../utils/schema';
 
 // SEO-optimized title (50-60 chars)
@@ -52,12 +53,19 @@ const serviceLocationPages = LOCATIONS.flatMap(location =>
   }))
 );
 
+const blogPages = BLOG_POSTS.map(post => ({
+  url: `/blog/${post.slug}/`,
+  name: post.title,
+}));
+
 const totalPages =
   staticPages.length +
   servicePages.length +
   subServicePages.length +
   locationPages.length +
-  serviceLocationPages.length;
+  serviceLocationPages.length +
+  blogPages.length +
+  1; // for /blog/ index page
 ---
 
 <BaseLayout title={title} description={description} canonical="/sitemap/">
@@ -120,6 +128,25 @@ const totalPages =
             {locationPages.map(page => (
               <li>
                 <a href={page.url} class="text-primary hover:underline">
+                  {page.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Blog -->
+        <div>
+          <h2 class="text-xl font-semibold mb-4">Blog ({blogPages.length})</h2>
+          <ul class="space-y-2">
+            <li>
+              <a href="/blog/" class="text-primary hover:underline font-medium">
+                Blog Home
+              </a>
+            </li>
+            {blogPages.map(page => (
+              <li>
+                <a href={page.url} class="text-primary hover:underline text-sm">
                   {page.name}
                 </a>
               </li>
