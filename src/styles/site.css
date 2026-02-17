@@ -193,6 +193,10 @@
   .accordion__trigger { width: 100%; text-align: left; background: transparent; border: 0; padding: var(--space-4); font-weight: 600; }
   .accordion__panel { padding: 0 var(--space-4) var(--space-4); color: var(--color-muted); }
 
+  .hero-lead-form-card {
+    color: var(--color-text);
+  }
+
   .hp-field { position: absolute !important; left: -9999px !important; opacity: 0 !important; }
 
 
