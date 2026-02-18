@@ -29,33 +29,9 @@ jobs:
       - name: Build
         run: bun run build
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install Wrangler
-        run: npm install -g wrangler
-
-      - name: Verify Wrangler Installation
-        run: wrangler --version
-
-      - name: Create Cloudflare Pages project
-        continue-on-error: true
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: |
-          wrangler pages project create manchester-blocked-drain-co-uk --production-branch main 2>&1 || echo "Project may already exist, continuing..."
-
       - name: Deploy to Cloudflare Pages
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: |
-          echo "Deploying to Cloudflare Pages..."
-          echo "Project: manchester-blocked-drain-co-uk"
-          echo "Branch: main"
-          echo "Directory: ./dist"
-          ls -la ./dist | head -20
-          wrangler pages deploy ./dist --project-name=manchester-blocked-drain-co-uk --branch=main
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy ./dist --project-name=manchester-blocked-drain-co-uk --branch=main

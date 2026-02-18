@@ -7,7 +7,7 @@ main = "src/worker.ts"
 
 # Cloudflare Account Configuration
 # IMPORTANT: Update these values for your account and domain
-account_id = ""  # Your Cloudflare Account ID
+# account_id is provided via CLOUDFLARE_ACCOUNT_ID environment variable
 workers_dev = false
 
 # Environment: Production
