@@ -2,6 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { BRAND } from '../../data/brand';
 import { BLOG_POSTS, getAllCategories } from '../../data/blog';
+import { getPublishedPosts } from '../../lib/blog-api';
+import { lexicalToPlainText } from '../../lib/lexical-html';
 import { getBreadcrumbSchema } from '../../utils/schema';
 
 const title = `Drainage Tips & Advice | ${BRAND.brandName} Blog`;
@@ -12,12 +14,38 @@ const breadcrumbSchema = getBreadcrumbSchema([
   { name: "Blog", url: "/blog/" }
 ]);
 
-const categories = getAllCategories();
+// Fetch CMS posts
+const cmsResponse = await getPublishedPosts(50);
+const cmsPosts = cmsResponse.docs.map((post) => ({
+  slug: post.slug,
+  title: post.title,
+  excerpt: post.excerpt || lexicalToPlainText(post.content).slice(0, 200) + '...',
+  category: post.categories?.[0]?.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase()) || 'Blog',
+  publishDate: post.publishDate || post.createdAt || new Date().toISOString(),
+  readingTime: Math.max(1, Math.ceil(lexicalToPlainText(post.content).split(/\s+/).length / 200)),
+  source: 'cms' as const,
+}));
 
-// Sort posts by date (newest first)
-const sortedPosts = [...BLOG_POSTS].sort(
+// Merge: CMS posts first, then local posts (deduped by slug)
+const cmsSlugSet = new Set(cmsPosts.map((p) => p.slug));
+const localPosts = BLOG_POSTS.filter((p) => !cmsSlugSet.has(p.slug)).map((p) => ({
+  slug: p.slug,
+  title: p.title,
+  excerpt: p.excerpt,
+  category: p.category,
+  publishDate: p.publishDate,
+  readingTime: p.readingTime,
+  source: 'local' as const,
+}));
+
+const allPosts = [...cmsPosts, ...localPosts].sort(
   (a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
 );
+
+const categories = [...new Set([
+  ...getAllCategories(),
+  ...cmsPosts.map((p) => p.category),
+])];
 
 function formatDate(dateString: string): string {
   return new Date(dateString).toLocaleDateString('en-GB', {
@@ -60,7 +88,7 @@ function formatDate(dateString: string): string {
 
       <!-- Posts Grid -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {sortedPosts.map((post) => (
+        {allPosts.map((post) => (
           <article class="bg-white border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
             <div class="p-6">
               <div class="flex items-center gap-2 mb-3">
