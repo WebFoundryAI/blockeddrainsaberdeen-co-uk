@@ -39,8 +39,8 @@ export function getBaseBusinessSchema() {
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 53.4808,
-      "longitude": -2.2426
+      "latitude": 57.1497,
+      "longitude": -2.0943
     },
     "openingHoursSpecification": [
       {
