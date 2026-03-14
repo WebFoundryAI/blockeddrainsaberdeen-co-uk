@@ -367,3 +367,7 @@ For support with this template:
 ## License
 
 This template is designed for resale. Each deployment should be treated as a separate instance for a single brand/client.
+
+## Cloudflare Pages Auto-Deploy Test
+- Test timestamp: 2026-03-14 09:36 UTC
+- Testing auto-deployment from GitHub to Cloudflare Pages
