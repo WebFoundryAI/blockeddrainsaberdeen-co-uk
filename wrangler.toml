@@ -36,8 +36,8 @@ compatibility_date = "2024-12-20"
 #   Settings > Functions > D1 database bindings > Variable name: DB
 [[d1_databases]]
 binding = "DB"
-database_name = "swindon-blocked-drains-leads"
-database_id = "4ce8f47b-6fe9-488d-8fb8-29f2ee61dc87"
+database_name = "aberdeen-leads"
+database_id = "ae69f916-a47e-46ac-a2e7-08a39300473e"
 
 # Build Configuration
 [build]
