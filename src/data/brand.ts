@@ -1,11 +1,11 @@
 export const BRAND = {
   brandName: "Blocked Drains Aberdeen",
-  domain: "BlockedDrainsAberdeen.co.uk",
+  domain: "blockeddrainsaberdeen.co.uk",
   primaryLocation: "Aberdeen",
   serviceAreaLabel: "Aberdeen and surrounding areas",
   phone: "08006118150",
   phoneFormatted: "0800 611 8150",
-  email: "info@BlockedDrainsAberdeen.co.uk",
+  email: "info@blockeddrainsaberdeen.co.uk",
   addressLine1: "1 Berry Street",
   addressLine2: "Aberdeen",
   postcode: "AB25 1HF",
