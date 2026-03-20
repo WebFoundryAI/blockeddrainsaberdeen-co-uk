@@ -20,7 +20,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "signs-of-blocked-drain",
     title: "7 Warning Signs You Have a Blocked Drain",
-    metaTitle: "7 Warning Signs of a Blocked Drain | When to Call a Professional",
+    metaTitle: "7 Warning Signs of a Blocked Drain in Aberdeen",
     metaDescription: "Learn the early warning signs of a blocked drain in Aberdeen. From slow drainage to bad smells, know when to call a professional before it becomes an emergency.",
     excerpt: "Catching a blocked drain early can save you hundreds of pounds in emergency repairs. Here are the key warning signs every Aberdeen homeowner should know.",
     content: `A blocked drain rarely happens overnight. In most cases, there are warning signs that build up over weeks or even months before a complete blockage occurs. Recognising these signs early can help you avoid costly emergency callouts and potential water damage to your property.
@@ -223,7 +223,7 @@ Book your [CCTV drain survey](/services/cctv-drain-surveys/) today by calling ${
   {
     slug: "emergency-drain-problems-what-to-do",
     title: "Emergency Drain Problems: What to Do Before the Engineer Arrives",
-    metaTitle: "Emergency Drain Problems | Immediate Steps While Waiting for Help",
+    metaTitle: "Emergency Drain Problems | What to Do While Waiting",
     metaDescription: "Experiencing a drain emergency in Aberdeen? Learn what to do immediately to minimise damage while waiting for professional help to arrive.",
     excerpt: "When drains fail, every minute counts. Here's how to protect your property while waiting for emergency drainage help.",
     content: `A drain emergency can strike at any time, often at the most inconvenient moment. Whether it's sewage backing up into your home, a blocked drain causing flooding, or a collapsed pipe, knowing what to do in the first few minutes can significantly reduce damage to your property.
