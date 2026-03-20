@@ -1,4 +1,10 @@
-# Canonical redirects — no catch-alls that intercept content pages
-http://blockeddrainsaberdeen.co.uk/* https://blockeddrainsaberdeen.co.uk/:splat 301!
-http://www.blockeddrainsaberdeen.co.uk/* https://blockeddrainsaberdeen.co.uk/:splat 301!
-https://www.blockeddrainsaberdeen.co.uk/* https://blockeddrainsaberdeen.co.uk/:splat 301!
+# Redirects for Cloudflare Pages/Workers
+
+# www to non-www redirect (301 permanent)
+https://www.blockeddrainsaberdeen.co.uk/* https://blockeddrainsaberdeen.co.uk/:splat 301
+http://www.blockeddrainsaberdeen.co.uk/* https://blockeddrainsaberdeen.co.uk/:splat 301
+http://blockeddrainsaberdeen.co.uk/* https://blockeddrainsaberdeen.co.uk/:splat 301
+
+# Old FAQ URL redirect (301 permanent)
+/frequently-asked-questions/ /faq/ 301
+/frequently-asked-questions /faq/ 301
