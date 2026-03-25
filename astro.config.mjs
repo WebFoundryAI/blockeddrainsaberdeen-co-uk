@@ -14,6 +14,7 @@ export default defineConfig({
     tailwind(),
   ],
   output: 'static',
+  compressHTML: true,
   build: {
     format: 'directory',
   },
