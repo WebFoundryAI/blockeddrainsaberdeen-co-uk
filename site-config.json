@@ -1,0 +1,14 @@
+{
+  "site_name": "Aberdeen Plumber",
+  "city": "Aberdeen",
+  "region": "Aberdeenshire",
+  "country": "Scotland",
+  "tier": 2,
+  "domain": "blockeddrainsaberdeen.co.uk",
+  "layout_variant": "hero-cta",
+  "theme_variant": "trust-blue",
+  "status": "active",
+  "github_repo": "https://github.com/WebFoundryAI/blockeddrainsaberdeen-co-uk.git",
+  "source_folder": "rank-to-rent-sites/blockeddrainsaberdeen-co-uk",
+  "notes": "Tier 2 site. Migrated from existing rank-to-rent-sites folder."
+}
