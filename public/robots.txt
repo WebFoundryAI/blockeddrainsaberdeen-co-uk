@@ -44,7 +44,7 @@ Disallow: /status
 Disallow: /_astro/
 
 # Sitemap location
-Sitemap: https://blockeddrainsaberdeen.co.uk/sitemap.xml
+Sitemap: https://blockeddrainsaberdeen.co.uk/sitemap-index.xml
 
 # Host preference (canonical non-www HTTPS)
 Host: https://blockeddrainsaberdeen.co.uk
